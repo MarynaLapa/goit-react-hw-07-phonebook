@@ -4,18 +4,21 @@ import ContactList from "./components/partsOfPage/ContactList";
 import { Title, TitleSection } from "./components/styled/style";
 import Section from "./components/partsOfPage/Section";
 import Container from "./components/partsOfPage/Container";
-import { getAllContacts } from "components/api/contactsApi";
+import { useDispatch, useSelector } from "react-redux";
+import { getContactsThunk } from "store/Contacts/ThunkContacts";
+import { useEffect } from "react";
+import { errorSelector, isLoadingSelector } from "store/selectors";
 
 const App = () => {
-  const getContacts = async () => {
-    try {
-      const {data} = await getAllContacts()
-      console.log('response :>> ', data);
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
-getContacts()
+  
+  const dispatch = useDispatch()
+  const isLoading = useSelector(isLoadingSelector)
+  const error = useSelector(errorSelector)
+  
+  useEffect(() => {
+    dispatch(getContactsThunk())
+  }, [dispatch])
+ 
   return (   
     <main>
       <Section>
@@ -24,12 +27,12 @@ getContacts()
           <ContactForm />
         </Container>
       </Section>
-
       <Section>
         <Container>
           <TitleSection>Contacts</TitleSection>
           <Filter title={'Find contacts by name'} />
-          
+          {isLoading && <p>Loading...</p>}
+          {error && <h1>{error}</h1>}
             <ContactList />
         </Container>
       </Section>

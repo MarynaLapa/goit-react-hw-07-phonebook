@@ -4,12 +4,13 @@ import './index.css';
 import App from 'App';
 import { Provider } from 'react-redux';
 import { store } from './store/store'
-
+// import { Normalize } from 'styled-normalize'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <React.StrictMode>
+        {/* <Normalize /> */}
         <App />
     </React.StrictMode>
   </Provider>

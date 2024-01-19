@@ -4,14 +4,16 @@ import { FormStyled } from 'components/styled/style'
 import Button from 'components/partsOfPage/Button'
 import InputWrapper from '../InputWrapper'
 import { useDispatch, useSelector } from 'react-redux'
-import { addContacts } from 'store/sliceContacts'
+import { contactsSelector } from 'store/selectors'
+import { createContactsThunk } from 'store/Contacts/ThunkContacts'
 
 const ContactForm = () => {
   
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
 
-  const { contacts } = useSelector((state) => state.contacts)
+  const contacts = useSelector(contactsSelector)
+
   const dispatch = useDispatch()
   
   const handlerChange = ({ target: { value, name } }) => {
@@ -39,7 +41,17 @@ const ContactForm = () => {
       return;
     }
      
-    dispatch(addContacts({name: e.target.name.value, number: e.target.number.value}))
+    const formData = new FormData(e.currentTarget)
+    
+    const data = {}
+    formData.forEach((value, key) => {
+      if (value.length) {
+        data[key] = value
+      }
+    })
+    console.log('formData', data)
+
+    dispatch(createContactsThunk(data))
     
     setName('')
     setNumber('')

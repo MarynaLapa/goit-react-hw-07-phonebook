@@ -1,11 +1,14 @@
-import { InputContainer } from 'components/styled/style';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'store/sliceFilter';
+import { filterSelector } from 'store/selectors';
+
 import Input from './Input';
+import { InputContainer } from 'components/styled/style';
 
 const Filter = ({ title }) => {
 
-    const { filter } = useSelector((state) => state.filter)
+  const filter = useSelector(filterSelector)
+
     const dispatch = useDispatch()
 
     const filterContacts = ({target: {value}}) => {
