@@ -20,19 +20,13 @@ const contactsSlice = createSlice({
                 state.items.push(payload)
             })
             .addCase(removeContactThunk.fulfilled, (state, { payload }) => {
-                state.items = state.items.find(el => el.id === payload)
+                const index = state.items.findIndex((el) => el.id === payload.id)
+                state.items.splice(index, 1)
             })
             .addMatcher((action) => action.type.endsWith('/pending'), handlerPending)
             .addMatcher((action) => action.type.endsWith('/fulfilled'), handlerFulfilled)
-            .addMatcher((action) => action.type.endsWith('/rejected'), handlerRejected)
-            
-
+            .addMatcher((action) => action.type.endsWith('/rejected'), handlerRejected)     
     }
-    
-        // removeContact: (state, { payload }) => {
-        //         state.contacts = state.contacts.filter((el) => el.id !== payload)
-        //     }
-    // }
 })
 
 export const contactsReducer = contactsSlice.reducer

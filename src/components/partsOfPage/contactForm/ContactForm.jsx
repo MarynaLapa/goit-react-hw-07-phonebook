@@ -49,7 +49,6 @@ const ContactForm = () => {
         data[key] = value
       }
     })
-    console.log('formData', data)
 
     dispatch(createContactsThunk(data))
     

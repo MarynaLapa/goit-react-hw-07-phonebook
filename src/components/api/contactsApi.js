@@ -10,7 +10,6 @@ export const addContact = async (contact) => {
 }
 
 export const removeContact = async (id) => {
-    console.log('id :>> ', id);
     const { data } = await api.delete(`/contacts/${id}`)
     return data
 }

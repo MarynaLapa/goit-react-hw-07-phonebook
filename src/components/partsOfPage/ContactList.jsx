@@ -11,8 +11,7 @@ const ContactList = () => {
     const filter = useSelector(filterSelector)
     const filteredList = useSelector(filterListSelector)
  
-    return (
-        
+    return (        
         <List>
             {contacts && <ContactsListItem contacts={filter ? filteredList : contacts} />}    
         </List>

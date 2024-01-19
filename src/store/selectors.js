@@ -6,6 +6,6 @@ export const errorSelector = (state) => state.contacts.error
 
 export const filterSelector = (state) => state.filter.filter
 export const filterListSelector = createSelector(contactsSelector, filterSelector, (items, filter) => {
-    return items.filter(user => user.name.toLowerCase().includes(filter?.toLowerCase()))
+    return items.filter(user => user.name.toLowerCase().includes(filter.toLowerCase()))
 })
 
