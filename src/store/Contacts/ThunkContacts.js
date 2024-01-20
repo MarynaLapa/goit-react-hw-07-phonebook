@@ -1,14 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import {  removeContact, addContact, getAllContacts } from "components/api/contactsApi";
+import { removeContact, addContact, getAllContacts } from "components/api/contactsApi";
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export const getContactsThunk = createAsyncThunk(
     'contacts/getContacts', async (_, { rejectWithValue }) => {
         try {
+            Loading.circle('Loading...', {
+                notiflixIconColor: 'red',
+            });
             const { data } = await getAllContacts()
             return data
         } catch (error) {
             console.log('error', error)
             return rejectWithValue(error)
+        } finally {
+            Loading.remove();
         }
     }
 )
@@ -16,6 +22,7 @@ export const getContactsThunk = createAsyncThunk(
 export const createContactsThunk = createAsyncThunk(
     'contacts/addContacts', async (body, { rejectWithValue }) => {
         try {
+
             return await addContact(body)
         } catch (error) {
             console.log('error', error)

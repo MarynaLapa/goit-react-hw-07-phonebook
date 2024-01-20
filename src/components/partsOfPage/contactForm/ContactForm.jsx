@@ -4,8 +4,9 @@ import { FormStyled } from 'components/styled/style'
 import Button from 'components/partsOfPage/Button'
 import InputWrapper from '../InputWrapper'
 import { useDispatch, useSelector } from 'react-redux'
-import { contactsSelector } from 'store/selectors'
+import { contactsSelector, isLoadingSelector } from 'store/selectors'
 import { createContactsThunk } from 'store/Contacts/ThunkContacts'
+
 
 const ContactForm = () => {
   
@@ -62,7 +63,8 @@ const ContactForm = () => {
             data={data}
             value={[name, number]}
             onChange={handlerChange}
-          />
+      />
+      
           <Button
             text={'Add contact'}
             type={'submit'}

@@ -3,9 +3,9 @@ import { createContactsThunk, getContactsThunk, removeContactThunk } from './Thu
 import { handlerFulfilled, handlerPending, handlerRejected } from './operation'
 
 const initialState = {
-        items: [],
-        isLoading: false,
-        error: '',    
+    items: [],
+    isLoading: false,
+    error: '',    
 }
 
 const contactsSlice = createSlice({

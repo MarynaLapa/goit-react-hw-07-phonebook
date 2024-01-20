@@ -9,6 +9,7 @@ import { getContactsThunk } from "store/Contacts/ThunkContacts";
 import { useEffect } from "react";
 import { errorSelector, isLoadingSelector } from "store/selectors";
 
+
 const App = () => {
   
   const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const App = () => {
         <Container>
           <TitleSection>Contacts</TitleSection>
           <Filter title={'Find contacts by name'} />
-          {isLoading && <p>Loading...</p>}
+          {/* {isLoading &&} */}
           {error && <h1>{error}</h1>}
             <ContactList />
         </Container>
